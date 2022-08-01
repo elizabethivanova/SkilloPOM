@@ -1,4 +1,5 @@
 package tests;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,19 +14,20 @@ public class LoginPageTest extends BaseTest{
     @Test
     public void loginTest(){
         loginPage.login(USERNAME, PASSWORD);
-        homePage.isProfileLinkDisplayed();
+        Assert.assertTrue(homePage.isProfileLinkDisplayed());
     }
     @Test
     public void logout(){
         loginPage.login(USERNAME, PASSWORD);
         homePage.logout();
-        loginPage.isLoginLinkDisplayed();
+        Assert.assertTrue(loginPage.isLoginLinkDisplayed());
     }
     @Test
     public void loginWithInvalidCredentials(){
         loginPage.setUsername("fefefwfwdew");
         loginPage.setPassword("pass");
         loginPage.clickSignInBtn();
-        loginPage.isErrorMsgDisplayed();
+        Assert.assertTrue(loginPage.isErrorMsgDisplayed());
+        Assert.assertEquals(loginPage.isErrorMessageCorrect(), "User not found");
     }
 }

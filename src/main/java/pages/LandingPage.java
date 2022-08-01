@@ -11,23 +11,23 @@ import java.util.List;
 public class LandingPage extends BasePage{
 
     @FindBy(css = "#nav-link-home")
-    WebElement homeButtonOnHeader;
+    private WebElement homeButtonOnHeader;
     @FindBy(css = "#nav-link-login")
-    WebElement loginLinkInHeader;
+    private WebElement loginLinkInHeader;
     @FindBy(xpath = "//*[@class='col-12 offset-md-1 col-md-10 offset-lg-3 col-lg-6']")
-    List<WebElement> elementsOnLandingPage;
+    private List<WebElement> elementsOnLandingPage;
 
     public LandingPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    public void checkHomeButton(){
-        Assert.assertTrue(homeButtonOnHeader.isDisplayed());
+    public boolean checkHomeButton(){
+        return homeButtonOnHeader.isDisplayed();
     }
-    public void checkPosts(){
-        Assert.assertEquals(elementsOnLandingPage.size(), 3);
+    public int checkPosts(){
+        return elementsOnLandingPage.size();
     }
-    public void checkLoginLink(){
-        Assert.assertTrue(loginLinkInHeader.isDisplayed());
+    public boolean checkLoginLink(){
+        return loginLinkInHeader.isDisplayed();
     }
 }

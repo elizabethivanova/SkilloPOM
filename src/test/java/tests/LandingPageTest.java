@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LandingPage;
@@ -14,17 +15,17 @@ public class LandingPageTest extends BaseTest{
     }
     @Test
     public void checkHomeButton(){
-        landingPage.checkHomeButton();
+        Assert.assertTrue(landingPage.checkHomeButton());
     }
 
     @Test
     public void checkPosts(){
-        landingPage.checkPosts();
+        Assert.assertEquals(landingPage.checkPosts(), 3);
     }
 
     @Test
     public void checkHeaderLinksBeforeLogin(){
-        landingPage.checkHomeButton();
-        landingPage.checkLoginLink();
+        Assert.assertTrue(landingPage.checkHomeButton());
+        Assert.assertTrue(landingPage.checkLoginLink());
     }
 }

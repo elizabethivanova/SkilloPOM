@@ -10,16 +10,16 @@ import org.testng.Assert;
 public class LoginPage extends BasePage{
 
     @FindBy(css = "#defaultLoginFormUsername")
-    WebElement usernameFiled;
+    private WebElement usernameFiled;
     @FindBy(css = "#defaultLoginFormPassword")
-    WebElement passwordField;
+    private WebElement passwordField;
     @FindBy(css = "#sign-in-button")
-    WebElement signInBtn;
+    private WebElement signInBtn;
     @FindBy(css = "#nav-link-login")
-    WebElement loginLinkInHeader;
+    private WebElement loginLinkInHeader;
 
     @FindBy(css=".toast-error")
-    WebElement invalidCredErrorMSG;
+    private WebElement invalidCredErrorMSG;
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -38,12 +38,14 @@ public class LoginPage extends BasePage{
         setPassword(password);
         clickSignInBtn();
     }
-    public void isLoginLinkDisplayed(){
-        Assert.assertTrue(loginLinkInHeader.isDisplayed());
+    public boolean isLoginLinkDisplayed(){
+        return loginLinkInHeader.isDisplayed();
     }
-    public void isErrorMsgDisplayed(){
+    public boolean isErrorMsgDisplayed(){
         fluentWait.until(ExpectedConditions.visibilityOf(invalidCredErrorMSG));
-        Assert.assertTrue(invalidCredErrorMSG.isDisplayed());
-        Assert.assertEquals(invalidCredErrorMSG.getText(), "User not found");
+        return invalidCredErrorMSG.isDisplayed();
+    }
+    public String isErrorMessageCorrect(){
+        return invalidCredErrorMSG.getText();
     }
 }

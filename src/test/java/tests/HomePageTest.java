@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest{
@@ -9,9 +10,9 @@ public class HomePageTest extends BaseTest{
  public void checkHeaderLinksAfterLogin(){
      driver.get("http://training.skillo-bg.com/users/login");
      loginPage.login("elizabethtest", "password");
-     homePage.isHomeLinkDisplayed();
-     homePage.isProfileLinkDisplayed();
-     homePage.isNewPostLinkDisplayed();
-     homePage.isSearchBarDisplayed();
+     Assert.assertTrue(homePage.isHomeLinkDisplayed());
+     Assert.assertTrue(homePage.isProfileLinkDisplayed());
+     Assert.assertTrue(homePage.isNewPostLinkDisplayed());
+     Assert.assertTrue(homePage.isSearchBarDisplayed());
  }
 }

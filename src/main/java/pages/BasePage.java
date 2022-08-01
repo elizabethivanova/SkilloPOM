@@ -18,5 +18,6 @@ public class BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         fluentWait = new FluentWait<>(driver);
         fluentWait.pollingEvery(Duration.ofMillis(250));
+        fluentWait.withTimeout(Duration.ofSeconds(10));
     }
 }
